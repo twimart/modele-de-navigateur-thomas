@@ -14,7 +14,7 @@ Exécutez `npm run build` pour construire le projet. Les artefacts de constructi
 
 ## Développement dans le framework electron
 
-Exécutez `npm run start` pour lancer l'environnement de développement de l'application electron. Cette commande doit être redémarrée si vous modifiez l'un des fichiers source.
+Exécutez `npm run start:electron` pour lancer l'environnement de développement de l'application electron. Cette commande doit être redémarrée si vous modifiez l'un des fichiers source.
 
 ## Construire l'application avec le framework electron
 
