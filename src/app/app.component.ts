@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { AddressComponent } from './address/address.component';
+import { BackwardComponent } from './backward/backward.component';
+import { DebugComponent } from './debug/debug.component';
+import { ForwardComponent } from './forward/forward.component';
+import { RefreshComponent } from './refresh/refresh.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,ToolbarComponent],
+  imports: [RouterOutlet, MatToolbarModule, AddressComponent, BackwardComponent, DebugComponent, ForwardComponent, RefreshComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,12 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { BrowserService } from '../../services/browser.service';
+import { BrowserService } from '../services/browser.service';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-address',
   standalone: true,
-  imports: [MatIconModule, FormsModule],
+  imports: [MatIconModule, FormsModule, MatInputModule, MatButtonModule],
   templateUrl: './address.component.html',
   styleUrl: './address.component.css'
 })
