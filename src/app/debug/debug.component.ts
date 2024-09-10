@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { BrowserService } from '../services/browser.service';
+import { Component, inject } from '@angular/core';
+import { BrowserService } from '../browser.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -11,9 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './debug.component.css'
 })
 export class DebugComponent {
-  constructor(
-    public browserService :BrowserService
-  ) {
+  public browserService = inject(BrowserService);
 
-  }
 }

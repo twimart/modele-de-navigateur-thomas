@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { BrowserService } from '../services/browser.service';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { BrowserService } from '../browser.service';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -15,11 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class AddressComponent {
   @ViewChild('search') searchElement: ElementRef = new ElementRef({});
 
-  constructor(
-    public browserService :BrowserService
-  ) {
-
-  }
+  public browserService = inject(BrowserService);
 
   onKeyDownEvent(e: any) {
     if (e.key === 'Escape') {

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserService } from '../services/browser.service';
+import { BrowserService } from '../browser.service';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -11,9 +11,5 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './forward.component.css'
 })
 export class ForwardComponent {
-  constructor(
-    public browserService :BrowserService
-  ) {
-
-  }
+  public browserService = inject(BrowserService);
 }
