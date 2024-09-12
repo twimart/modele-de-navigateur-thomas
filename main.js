@@ -1,4 +1,6 @@
 const { app, BrowserView, BrowserWindow, ipcMain} = require('electron');
+const path = require('node:path');
+
 const{initEventsHandler} = require('./handleEvents');
 
 app.whenReady().then(() => {
@@ -6,9 +8,7 @@ app.whenReady().then(() => {
         width: 800,
         height: 800,
         webPreferences: {
-            contextIsolation: false,
-            nodeIntegration: true,
-            webSecurity: false
+          preload: path.join(__dirname, 'preload.js')
         }
     });
 

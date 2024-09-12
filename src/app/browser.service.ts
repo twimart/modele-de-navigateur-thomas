@@ -1,52 +1,46 @@
 import { Injectable } from '@angular/core';
-import { IpcRenderer } from 'electron';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrowserService {
-  private ipcRenderer: IpcRenderer;
 
   url = 'https://amiens.unilasalle.fr';
   canGoBack = false;
   canGoForward = false;
 
+// @ts-ignore
+  electronAPI = window.electronAPI;
+
   constructor() {
-    if (window.require) {
-      this.ipcRenderer = window.require('electron').ipcRenderer;
-    } else {
-      // Seulement pour les tests en dehors d'electron
-      const ipc = {} as IpcRenderer;
-      this.ipcRenderer = ipc;
-    }
   }
 
   toogleDevTool() {
-    this.ipcRenderer.invoke('toogle-dev-tool');
+    this.electronAPI.send('toogle-dev-tool');
   }
 
   goBack() {
-    this.ipcRenderer.invoke('go-back')
+    this.electronAPI.send('go-back');
     this.updateHistory();
   }
 
   goForward() {
-    this.ipcRenderer.invoke('go-forward')
+    this.electronAPI.send('go-forward');
     this.updateHistory();
   }
 
   refresh() {
-    this.ipcRenderer.invoke('refresh');
+    this.electronAPI.send('refresh');
   }
 
   goToPage(url: string) {
-    this.ipcRenderer.invoke('go-to-page', url)
+    this.electronAPI.invoke('go-to-page', url)
       .then(() => this.updateHistory());
   }
 
   setToCurrentUrl() {
-    this.ipcRenderer.invoke('current-url')
-      .then((url) => {
+    this.electronAPI.invoke('current-url')
+      .then((url :string) => {
         this.url = url;
       });
   }
@@ -54,10 +48,10 @@ export class BrowserService {
   updateHistory() {
     this.setToCurrentUrl();
 
-    this.ipcRenderer.invoke('can-go-back')
+    this.electronAPI.invoke('can-go-back')
       .then((canGoBack : boolean) => this.canGoBack = canGoBack);
 
-    this.ipcRenderer.invoke('can-go-forward')
+    this.electronAPI.invoke('can-go-forward')
       .then((canGoForward : boolean) => this.canGoForward = canGoForward);
   }
 }
