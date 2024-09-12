@@ -12,34 +12,31 @@ export class BrowserService {
 // @ts-ignore
   electronAPI = window.electronAPI;
 
-  constructor() {
-  }
-
   toogleDevTool() {
-    this.electronAPI.send('toogle-dev-tool');
+    this.electronAPI.toogleDevTool();
   }
 
   goBack() {
-    this.electronAPI.send('go-back');
+    this.electronAPI.goBack();
     this.updateHistory();
   }
 
   goForward() {
-    this.electronAPI.send('go-forward');
+    this.electronAPI.goForward();
     this.updateHistory();
   }
 
   refresh() {
-    this.electronAPI.send('refresh');
+    this.electronAPI.refresh();
   }
 
   goToPage(url: string) {
-    this.electronAPI.invoke('go-to-page', url)
+    this.electronAPI.goToPage(url)
       .then(() => this.updateHistory());
   }
 
   setToCurrentUrl() {
-    this.electronAPI.invoke('current-url')
+    this.electronAPI.currentUrl()
       .then((url :string) => {
         this.url = url;
       });
@@ -48,10 +45,10 @@ export class BrowserService {
   updateHistory() {
     this.setToCurrentUrl();
 
-    this.electronAPI.invoke('can-go-back')
+    this.electronAPI.canGoBack()
       .then((canGoBack : boolean) => this.canGoBack = canGoBack);
 
-    this.electronAPI.invoke('can-go-forward')
+    this.electronAPI.canGoForward()
       .then((canGoForward : boolean) => this.canGoForward = canGoForward);
   }
 }
