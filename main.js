@@ -11,7 +11,13 @@ app.whenReady().then(() => {
       preload: path.join(__dirname, 'preload.js')
     }
   });
-  win.loadFile('dist/browser-template/browser/index.html');
+
+  if (app.isPackaged){
+    win.loadFile('dist/browser-template/browser/index.html');
+  }else{
+    win.loadURL('http://localhost:4200')
+  }
+
 
   // WebContentsView initiate the rendering of a second view to browser the web
   const view = new WebContentsView();
@@ -22,6 +28,8 @@ app.whenReady().then(() => {
     const winSize = win.webContents.getOwnerBrowserWindow().getBounds();
     view.setBounds({ x: 0, y: 55, width: winSize.width, height: winSize.height });
   }
+
+    win.webContents.openDevTools({ mode: 'detach' });
 
   // Register events handling from the toolbar
   ipcMain.on('toogle-dev-tool', () => {
@@ -61,6 +69,7 @@ app.whenReady().then(() => {
     return view.webContents.getURL();
   });
 
+  //Register events handling from the main windows
   win.once('ready-to-show', () => {
     fitViewToWin();
     view.webContents.loadURL('https://amiens.unilasalle.fr');
@@ -69,6 +78,4 @@ app.whenReady().then(() => {
   win.on('resized', () => {
     fitViewToWin();
   });
-
-  registerEvents();
 })
