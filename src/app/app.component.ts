@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { AddressComponent } from './address/address.component';
 import { BackwardComponent } from './backward/backward.component';
 import { DebugComponent } from './debug/debug.component';
@@ -9,7 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, MatToolbarModule, AddressComponent, BackwardComponent, DebugComponent, ForwardComponent, RefreshComponent],
+    imports: [MatToolbarModule, AddressComponent, BackwardComponent, DebugComponent, ForwardComponent, RefreshComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
