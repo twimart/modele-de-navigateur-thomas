@@ -6,11 +6,10 @@ import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-address',
-  standalone: true,
-  imports: [MatIconModule, FormsModule, MatInputModule, MatButtonModule],
-  templateUrl: './address.component.html',
-  styleUrl: './address.component.css'
+    selector: 'app-address',
+    imports: [MatIconModule, FormsModule, MatInputModule, MatButtonModule],
+    templateUrl: './address.component.html',
+    styleUrl: './address.component.css'
 })
 export class AddressComponent {
   @ViewChild('search') searchElement: ElementRef = new ElementRef({});
