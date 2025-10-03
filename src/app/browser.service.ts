@@ -9,11 +9,15 @@ export class BrowserService {
   canGoBack = false;
   canGoForward = false;
 
-// @ts-ignore
   electronAPI = window.electronAPI;
 
   toogleDevTool() {
     this.electronAPI.toogleDevTool();
+  }
+
+  public goHome(): void {
+    const homeUrl = 'https://amiens.unilasalle.fr';
+    this.goToPage(homeUrl);
   }
 
   goBack() {
@@ -37,7 +41,7 @@ export class BrowserService {
 
   setToCurrentUrl() {
     this.electronAPI.currentUrl()
-      .then((url :string) => {
+      .then((url: string) => {
         this.url = url;
       });
   }
@@ -46,9 +50,9 @@ export class BrowserService {
     this.setToCurrentUrl();
 
     this.electronAPI.canGoBack()
-      .then((canGoBack : boolean) => this.canGoBack = canGoBack);
+      .then((canGoBack: boolean) => this.canGoBack = canGoBack);
 
     this.electronAPI.canGoForward()
-      .then((canGoForward : boolean) => this.canGoForward = canGoForward);
+      .then((canGoForward: boolean) => this.canGoForward = canGoForward);
   }
 }

@@ -1,6 +1,6 @@
 # Navigateur
 
-Ce projet a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+Ce projet a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
 
 Lancez la commande `npm install` pour installer les dépendances nécessaires du projet.
 

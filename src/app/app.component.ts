@@ -5,10 +5,11 @@ import { DebugComponent } from './debug/debug.component';
 import { ForwardComponent } from './forward/forward.component';
 import { RefreshComponent } from './refresh/refresh.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { HomeButtonComponent } from "./home-button/home-button.component";
 
 @Component({
     selector: 'app-root',
-    imports: [MatToolbarModule, AddressComponent, BackwardComponent, DebugComponent, ForwardComponent, RefreshComponent],
+    imports: [MatToolbarModule, AddressComponent, BackwardComponent, DebugComponent, ForwardComponent, RefreshComponent, HomeButtonComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
