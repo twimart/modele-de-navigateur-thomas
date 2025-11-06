@@ -12,24 +12,37 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
-          "options": {
-            "outputPath": "dist/browser-template",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.css"
-            ],
-            "scripts": []
-          },
+            "options": {
+              "outputPath": "dist/browser-template",
+              "index": "src/index.html",
+              "browser": "src/main.ts",
+              "polyfills": [
+                "zone.js",
+                "src/polyfills.ts"
+              ],
+              "tsConfig": "tsconfig.app.json",
+              "assets": [
+                "src/favicon.ico",
+                "src/assets"
+              ],
+              "styles": [
+                "@angular/material/prebuilt-themes/azure-blue.css",
+                "src/styles.css"
+              ],
+              "scripts": [],
+              "allowedCommonJsDependencies": [
+                "bip39",
+                "ed25519-hd-key",
+                "buffer",
+                "stream-browserify",
+                "util",
+                "cipher-base",
+                "create-hash",
+                "pbkdf2",
+                "randombytes",
+                "sha.js"
+              ]
+            },
           "configurations": {
             "production": {
               "budgets": [

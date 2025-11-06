@@ -1,0 +1,107 @@
+<div class="wallet-container">
+  <h1>🔐 Portefeuille Solana</h1>
+
+  <!-- Wallet non connecté -->
+  <div *ngIf="!isWalletConnected" class="wallet-setup">
+    <h2>Créer ou importer un portefeuille</h2>
+    
+    <button (click)="createNewWallet()" class="btn btn-primary">
+      Créer un nouveau portefeuille
+    </button>
+
+    <div class="separator">OU</div>
+
+    <div class="import-section">
+      <h3>Importer un portefeuille existant</h3>
+      <textarea 
+        [(ngModel)]="mnemonic" 
+        placeholder="Entrez votre phrase mnémonique (12 mots)"
+        rows="3"
+        class="mnemonic-input">
+      </textarea>
+      <button (click)="importWallet()" class="btn btn-secondary">
+        Importer
+      </button>
+    </div>
+  </div>
+
+  <!-- Affichage de la phrase mnémonique lors de la création -->
+  <div *ngIf="showMnemonic" class="mnemonic-display">
+    <h3>⚠️ Sauvegardez cette phrase !</h3>
+    <p class="warning">Conservez-la en lieu sûr. Elle permet de récupérer votre portefeuille.</p>
+    <div class="mnemonic-box">{{ mnemonic }}</div>
+    <button (click)="showMnemonic = false" class="btn btn-secondary">J'ai sauvegardé</button>
+  </div>
+
+  <!-- Wallet connecté -->
+  <div *ngIf="isWalletConnected" class="wallet-connected">
+    <!-- Informations du portefeuille -->
+    <div class="wallet-info">
+      <h2>Mon Portefeuille</h2>
+      <div class="address-section">
+        <label>Adresse :</label>
+        <div class="address-display">
+          <span>{{ walletAddress }}</span>
+          <button (click)="copyAddress()" class="btn-icon">📋</button>
+        </div>
+      </div>
+
+      <div class="balance-section">
+        <h3>Solde</h3>
+        <div class="balance">{{ balance }} SOL</div>
+        <button (click)="refreshBalance()" class="btn btn-small" [disabled]="isLoading">
+          {{ isLoading ? '⏳' : '🔄' }} Actualiser
+        </button>
+        <button (click)="requestAirdrop()" class="btn btn-small" [disabled]="isLoading">
+          💧 Airdrop Devnet (1 SOL)
+        </button>
+      </div>
+    </div>
+
+    <!-- Envoyer des tokens -->
+    <div class="send-section">
+      <h3>📤 Envoyer des SOL</h3>
+      <div class="form-group">
+        <label>Adresse du destinataire :</label>
+        <input 
+          type="text" 
+          [(ngModel)]="recipientAddress" 
+          placeholder="Adresse Solana"
+          class="input-field">
+      </div>
+
+      <div class="form-group">
+        <label>Montant (SOL) :</label>
+        <input 
+          type="number" 
+          [(ngModel)]="sendAmount" 
+          placeholder="0.0"
+          step="0.01"
+          min="0"
+          class="input-field">
+      </div>
+
+      <button 
+        (click)="sendTokens()" 
+        class="btn btn-primary" 
+        [disabled]="isLoading || !recipientAddress || sendAmount <= 0">
+        {{ isLoading ? 'Envoi en cours...' : 'Envoyer' }}
+      </button>
+
+      <div *ngIf="txSignature" class="success-message">
+        ✅ Transaction réussie !<br>
+        Signature : <code>{{ txSignature }}</code>
+      </div>
+    </div>
+
+    <!-- Messages d'erreur -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Déconnexion -->
+    <button (click)="disconnect()" class="btn btn-danger">
+      Déconnecter le portefeuille
+    </button>
+  </div>
+</div>
